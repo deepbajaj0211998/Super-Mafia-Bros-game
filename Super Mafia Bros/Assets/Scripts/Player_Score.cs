@@ -26,7 +26,15 @@ public class Player_Score : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-        CountScore();
+        if(collision.gameObject.name == "EndLevel")
+		{
+            CountScore();
+        }
+        if(collision.gameObject.name == "Coin")
+		{
+            playerScore += 10;
+            Destroy(collision.gameObject);
+		}
 	}
 
     void CountScore()
