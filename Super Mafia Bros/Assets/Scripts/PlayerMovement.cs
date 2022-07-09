@@ -63,12 +63,22 @@ public class PlayerMovement : MonoBehaviour
 
     void PlayerRaycast()
 	{
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
-        if(hit != null && hit.collider != null && hit.distance < 0.9f && hit.collider.tag == "enemy")
+        RaycastHit2D rayUp = Physics2D.Raycast(transform.position, Vector2.up);
+        if (rayUp != null && rayUp.collider != null && rayUp.distance < 0.9f && rayUp.collider.name == "Broken_Box")
+		{
+            Destroy(rayUp.collider.gameObject);
+		}
+        RaycastHit2D rayDown = Physics2D.Raycast(transform.position, Vector2.down);
+        if(rayDown != null && rayDown.collider != null && rayDown.distance < 0.9f && rayDown.collider.tag == "enemy")
 		{
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * 1000);
-		}
-        if (hit != null && hit.collider != null && hit.distance < 0.9f && hit.collider.tag != "enemy")
+            rayDown.collider.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 200);
+            rayDown.collider.gameObject.GetComponent<Rigidbody2D>().gravityScale = 8;
+            rayDown.collider.gameObject.GetComponent<Rigidbody2D>().freezeRotation = false;
+            rayDown.collider.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            rayDown.collider.gameObject.GetComponent<EnemyControllerScript>().enabled = false;
+        }
+        if (rayDown != null && rayDown.collider != null && rayDown.distance < 0.9f && rayDown.collider.tag != "enemy")
         {
             isGrounded = true;
         }
