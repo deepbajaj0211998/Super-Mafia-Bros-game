@@ -29,6 +29,7 @@ public class Player_Score : MonoBehaviour
         if(collision.gameObject.name == "EndLevel")
 		{
             CountScore();
+            Player_Data_Mangement.dataMangement.SaveData();
         }
         if(collision.gameObject.name == "Coin")
 		{
@@ -40,7 +41,8 @@ public class Player_Score : MonoBehaviour
     void CountScore()
 	{
         playerScore = playerScore + (int)(timeLeft * 10);
-        Debug.Log(playerScore);
-	}
+        Player_Data_Mangement.dataMangement.highScore = playerScore + (int)(timeLeft * 10);
+        Player_Data_Mangement.dataMangement.SaveData();
+    }
 
 }
