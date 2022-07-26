@@ -13,9 +13,12 @@ public class GoToNewArea : MonoBehaviour
         sp1 = this.gameObject;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        print("hit");
+        if(Input.GetButtonDown("Jump"))
+        {
+            collision.gameObject.transform.position = sp2.gameObject.transform.position;
+        }
     }
 
     // Update is called once per frame
