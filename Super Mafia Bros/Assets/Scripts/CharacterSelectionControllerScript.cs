@@ -5,7 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class CharacterSelectionControllerScript : MonoBehaviour
 {
-    
 
+    public void ChooseCharacter(int characterIndex)
+    {
+
+    }
+
+    public void LoadScene()
+    {
+        SceneManager.LoadScene("Prototype_0");
+    }
 
 }
